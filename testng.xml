@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Loan Department" parallel="tests" thread-count="5">
+
+	<!-- listener class path -->
+	<listeners>
+		<listener class-name="test.Listeners"></listener>
+	</listeners>
+
+	<!-- parameterized testNG xml (suit level parameter)
+	<parameter name="URL" value="learning.com"></parameter>
+	-->
+	
+  <test thread-count="5" name="Personal Loan">
+ 	<!-- test case level parameter -->
+  <parameter name="URL" value="personalloan.com"></parameter>
+    <classes>
+      <class name="test.Day1">
+      
+      <!-- to include only methods to run in suit -->
+      	<methods>
+      		<include name="Demo"></include>
+      	</methods>
+      </class>
+      
+      <class name="test.Day2"/>
+      <class name="test.Day4"/>
+    </classes>
+  </test> <!-- Test -->
+  
+  <test name = "Car Loan">
+  <!-- test case/folder level parameter Day3 class-->
+  <parameter name="URL" value="carloan.com"></parameter>
+  <parameter name="APIkey/password" value="123456"></parameter>
+  	<classes>
+  		<class name="test.Day3">
+  		
+  			<!--   to exclude mobile car loan not to run with specific method and with regex .*-->
+  			<methods>
+  				<exclude name="api.*"></exclude>
+  			</methods> 
+  		</class>
+  	</classes>
+  </test>
+</suite> <!-- Suite -->
